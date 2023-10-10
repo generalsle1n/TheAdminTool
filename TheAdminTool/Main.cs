@@ -1,5 +1,8 @@
 ﻿using System.CommandLine;
 using System.Net;
+using TheAdminTool.Tester;
+using TheAdminTool.Tester.Interface;
+using TheAdminTool.Tester.Model;
 
 RootCommand Root = new RootCommand(description: "The Admin Tool for youre easier life");
 
@@ -15,6 +18,23 @@ Option<int> UDPTestPortOption = new Option<int>(name: "--Port", description: "En
 
 UDPTestCommand.SetHandler((InputUDPTestIPAddressOption, InputUDPTestPortOption) =>
 {
+	ITester UDPTester = new UDPTester()
+	{
+		TestItems = new List<object>()
+		{
+			InputUDPTestIPAddressOption,
+			InputUDPTestPortOption
+		}
+	};
+
+	if (UDPTester.Test() == TestResult.Success)
+	{
+        Console.WriteLine("Port is open");
+	}
+	else
+	{
+        Console.WriteLine("Port is not reachable");
+    }
 
 }, UDPTestIPAddressOption, UDPTestPortOption);
 
