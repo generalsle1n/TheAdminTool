@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TheAdminTool.Tester.Interface
+namespace TheAdminTool.Tester.Model
 {
-    internal class ITester
-    {
-    }
+	public enum TestResult
+	{
+		Success,
+		Failed
+	}
 }
