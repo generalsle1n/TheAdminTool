@@ -16,4 +16,4 @@ Option<int> UDPTestPortOption = new Option<int>(name: "--Port", description: "En
 UDPTestCommand.SetHandler((InputUDPTestIPAddressOption, InputUDPTestPortOption) =>
 {
 
-},UDPTestIPAddressOption, UDPTestPortOption)
+Root.Invoke(args);
