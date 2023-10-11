@@ -16,14 +16,13 @@ namespace TheAdminTool.Tester
 			{
 				try
 				{
-					Client.ConnectAsync(Endpoint);
+					Client.Connect(Endpoint);
 					return TestResult.Success;
 				}catch (Exception ex)
 				{
 					return TestResult.Failed;
 				}
 			}
-			return TestResult.Success;
 		}
 	}
 }
