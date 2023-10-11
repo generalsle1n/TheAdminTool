@@ -6,28 +6,31 @@ using TheAdminTool.Tester.Model;
 
 RootCommand Root = new RootCommand(description: "The Admin Tool for youre easier life");
 
-Command UDPTestCommand = new Command(name: "--UDPTest", description: "Test if an remote UDP Port is reachable");
-Option<IPAddress> UDPTestIPAddressOption = new Option<IPAddress>(name: "--IP", description: "Enter the remote IP")
+Command TCPTestCommand = new Command(name: "--TCPTest", description: "Test if an remote TCP Port is reachable");
+Option<string> TCPTestIPAddressOption = new Option<string>(name: "--IP", description: "Enter the remote IP")
 {
 	IsRequired = true
 };
-Option<int> UDPTestPortOption = new Option<int>(name: "--Port", description: "Enter the port to test")
+Option<int> TCPTestPortOption = new Option<int>(name: "--Port", description: "Enter the port to test")
 {
 	IsRequired = true
 };
 
-UDPTestCommand.SetHandler((InputUDPTestIPAddressOption, InputUDPTestPortOption) =>
+TCPTestCommand.AddOption(TCPTestIPAddressOption);
+TCPTestCommand.AddOption(TCPTestPortOption);
+
+TCPTestCommand.SetHandler((InputTCPTestIPAddressOption, InputTCPTestPortOption) =>
 {
-	ITester UDPTester = new UDPTester()
+	ITester TCPTester = new TCPTester()
 	{
 		TestItems = new List<object>()
 		{
-			InputUDPTestIPAddressOption,
-			InputUDPTestPortOption
+			InputTCPTestIPAddressOption,
+			InputTCPTestPortOption
 		}
 	};
 
-	if (UDPTester.Test() == TestResult.Success)
+	if (TCPTester.Test() == TestResult.Success)
 	{
         Console.WriteLine("Port is open");
 	}
@@ -36,7 +39,7 @@ UDPTestCommand.SetHandler((InputUDPTestIPAddressOption, InputUDPTestPortOption) 
         Console.WriteLine("Port is not reachable");
     }
 
-}, UDPTestIPAddressOption, UDPTestPortOption);
+}, TCPTestIPAddressOption, TCPTestPortOption);
 
-Root.AddCommand(UDPTestCommand);
+Root.AddCommand(TCPTestCommand);
 Root.Invoke(args);
