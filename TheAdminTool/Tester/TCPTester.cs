@@ -11,7 +11,7 @@ namespace TheAdminTool.Tester
 
 		public TestResult Test()
 		{
-			IPEndPoint Endpoint = new IPEndPoint(IPAddress.Parse((string)TestItems[0]), (int)TestItems[1]);
+			IPEndPoint Endpoint = new IPEndPoint((IPAddress)TestItems[0], (int)TestItems[1]);
 			using(TcpClient Client = new TcpClient())
 			{
 				try

@@ -7,7 +7,7 @@ using TheAdminTool.Tester.Model;
 RootCommand Root = new RootCommand(description: "The Admin Tool for youre easier life");
 
 Command TCPTestCommand = new Command(name: "--TCPTest", description: "Test if an remote TCP Port is reachable");
-Option<string> TCPTestIPAddressOption = new Option<string>(name: "--IP", description: "Enter the remote IP")
+Option<IPAddress> TCPTestIPAddressOption = new Option<IPAddress>(name: "--IP", description: "Enter the remote IP")
 {
 	IsRequired = true
 };
